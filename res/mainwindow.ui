@@ -11,323 +11,54 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Scott Player</string>
+   <string>Box Design</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="ScottPlayer.qrc">
-    <normaloff>:/ScottPlayer/ScottPlayer.png</normaloff>:/ScottPlayer/ScottPlayer.png</iconset>
+   <iconset resource="box_design.qrc">
+    <normaloff>:/box_design/box_design.png</normaloff>:/box_design/box_design.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
-    <property name="leftMargin">
-     <number>11</number>
-    </property>
     <item>
-     <widget class="QTabWidget" name="tabWidget">
-      <property name="currentIndex">
-       <number>0</number>
+     <widget class="QSplitter" name="splitter">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
-      <widget class="QWidget" name="tabPlaylists">
-       <attribute name="title">
-        <string>Playlists</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <item>
-           <widget class="QComboBox" name="cb_playlists">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pb_addPlaylist">
-            <property name="text">
-             <string>Add PlayList</string>
-            </property>
-            <property name="icon">
-             <iconset resource="ScottPlayer.qrc">
-              <normaloff>:/ScottPlayer/icons/add.png</normaloff>:/ScottPlayer/icons/add.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pb_deletePlaylist">
-            <property name="text">
-             <string>Delete Playlist</string>
-            </property>
-            <property name="icon">
-             <iconset resource="ScottPlayer.qrc">
-              <normaloff>:/ScottPlayer/icons/delete.png</normaloff>:/ScottPlayer/icons/delete.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_2">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QTableWidget" name="tw_playlists">
-          <column>
-           <property name="text">
-            <string>Name</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Songs</string>
-           </property>
-          </column>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <item>
-           <widget class="QPushButton" name="pb_addSequence">
-            <property name="text">
-             <string>Add Sequence</string>
-            </property>
-            <property name="icon">
-             <iconset resource="ScottPlayer.qrc">
-              <normaloff>:/ScottPlayer/icons/bullet_add.png</normaloff>:/ScottPlayer/icons/bullet_add.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pb_removeSequence">
-            <property name="text">
-             <string>Delete Sequence</string>
-            </property>
-            <property name="icon">
-             <iconset resource="ScottPlayer.qrc">
-              <normaloff>:/ScottPlayer/icons/bullet_delete.png</normaloff>:/ScottPlayer/icons/bullet_delete.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pb_moveUp">
-            <property name="text">
-             <string>Move Up</string>
-            </property>
-            <property name="icon">
-             <iconset resource="ScottPlayer.qrc">
-              <normaloff>:/ScottPlayer/icons/bullet_arrow_up.png</normaloff>:/ScottPlayer/icons/bullet_arrow_up.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pb_moveDown">
-            <property name="text">
-             <string>Move Down</string>
-            </property>
-            <property name="icon">
-             <iconset resource="ScottPlayer.qrc">
-              <normaloff>:/ScottPlayer/icons/bullet_arrow_down.png</normaloff>:/ScottPlayer/icons/bullet_arrow_down.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pb_playSequence">
-            <property name="text">
-             <string>Play Sequence</string>
-            </property>
-            <property name="icon">
-             <iconset resource="ScottPlayer.qrc">
-              <normaloff>:/ScottPlayer/icons/control_play_blue.png</normaloff>:/ScottPlayer/icons/control_play_blue.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pb_stopSequence">
-            <property name="text">
-             <string>Stop Sequence</string>
-            </property>
-            <property name="icon">
-             <iconset resource="ScottPlayer.qrc">
-              <normaloff>:/ScottPlayer/icons/control_stop_blue.png</normaloff>:/ScottPlayer/icons/control_stop_blue.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </item>
-       </layout>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="handleWidth">
+       <number>10</number>
+      </property>
+      <widget class="QTreeWidget" name="treeWidget">
+       <column>
+        <property name="text">
+         <string notr="true">1</string>
+        </property>
+       </column>
       </widget>
-      <widget class="QWidget" name="tabSchedules">
-       <attribute name="title">
-        <string>Schedules</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_3">
-        <item>
-         <widget class="QTableWidget" name="tw_schedules">
-          <column>
-           <property name="text">
-            <string>PlayList</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Start Time</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>End Time</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Start Date</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>End Date</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Days</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Enabled</string>
-           </property>
-          </column>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
-          <item>
-           <widget class="QPushButton" name="pb_addSchedule">
-            <property name="text">
-             <string>Add</string>
-            </property>
-            <property name="icon">
-             <iconset resource="ScottPlayer.qrc">
-              <normaloff>:/ScottPlayer/icons/add.png</normaloff>:/ScottPlayer/icons/add.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pb_editSchedule">
-            <property name="text">
-             <string>Edit</string>
-            </property>
-            <property name="icon">
-             <iconset resource="ScottPlayer.qrc">
-              <normaloff>:/ScottPlayer/icons/cog.png</normaloff>:/ScottPlayer/icons/cog.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pb_deleteSchedule">
-            <property name="text">
-             <string>Remove</string>
-            </property>
-            <property name="icon">
-             <iconset resource="ScottPlayer.qrc">
-              <normaloff>:/ScottPlayer/icons/delete.png</normaloff>:/ScottPlayer/icons/delete.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pb_sch_moveUp">
-            <property name="text">
-             <string>Move Up</string>
-            </property>
-            <property name="icon">
-             <iconset resource="ScottPlayer.qrc">
-              <normaloff>:/ScottPlayer/icons/arrow_up.png</normaloff>:/ScottPlayer/icons/arrow_up.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pb_sch_moveDown">
-            <property name="text">
-             <string>Move Down</string>
-            </property>
-            <property name="icon">
-             <iconset resource="ScottPlayer.qrc">
-              <normaloff>:/ScottPlayer/icons/arrow_down.png</normaloff>:/ScottPlayer/icons/arrow_down.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_3">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tabControllers">
-       <attribute name="title">
-        <string>Controllers</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_3">
-        <item row="0" column="0">
-         <widget class="QTableWidget" name="tw_controllers">
-          <column>
-           <property name="text">
-            <string>Type</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>IP</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Channels</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Enabled</string>
-           </property>
-          </column>
-         </widget>
-        </item>
-       </layout>
+      <widget class="QScrollArea" name="scrollArea">
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="scrollAreaWidgetContents">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>58</width>
+          <height>769</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QWidget" name="widget" native="true"/>
+         </item>
+        </layout>
+       </widget>
       </widget>
      </widget>
     </item>
@@ -353,9 +84,9 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionSet_Show_Folder"/>
+    <addaction name="actionNew"/>
+    <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
-    <addaction name="actionStop_Sequence"/>
     <addaction name="separator"/>
     <addaction name="actionClose"/>
    </widget>
@@ -370,7 +101,7 @@
     <property name="title">
      <string>Settings</string>
     </property>
-    <addaction name="actionMultisync"/>
+    <addaction name="actionOpen_Settings_File"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuSettings"/>
@@ -379,7 +110,7 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionClose">
    <property name="icon">
-    <iconset resource="ScottPlayer.qrc">
+    <iconset>
      <normaloff>:/ScottPlayer/icons/cancel.png</normaloff>:/ScottPlayer/icons/cancel.png</iconset>
    </property>
    <property name="text">
@@ -388,8 +119,8 @@
   </action>
   <action name="actionOpen_Logs">
    <property name="icon">
-    <iconset resource="ScottPlayer.qrc">
-     <normaloff>:/ScottPlayer/icons/book_open.png</normaloff>:/ScottPlayer/icons/book_open.png</iconset>
+    <iconset resource="box_design.qrc">
+     <normaloff>:/box_design/icons/script.png</normaloff>:/box_design/icons/script.png</iconset>
    </property>
    <property name="text">
     <string>Open Logs...</string>
@@ -397,7 +128,7 @@
   </action>
   <action name="actionSet_Show_Folder">
    <property name="icon">
-    <iconset resource="ScottPlayer.qrc">
+    <iconset>
      <normaloff>:/ScottPlayer/icons/folder.png</normaloff>:/ScottPlayer/icons/folder.png</iconset>
    </property>
    <property name="text">
@@ -421,7 +152,7 @@
   </action>
   <action name="actionReload_Project">
    <property name="icon">
-    <iconset resource="ScottPlayer.qrc">
+    <iconset>
      <normaloff>:/ScottPlayer/icons/arrow_refresh_small.png</normaloff>:/ScottPlayer/icons/arrow_refresh_small.png</iconset>
    </property>
    <property name="text">
@@ -430,8 +161,8 @@
   </action>
   <action name="actionAbout">
    <property name="icon">
-    <iconset resource="ScottPlayer.qrc">
-     <normaloff>:/ScottPlayer/ScottPlayer.png</normaloff>:/ScottPlayer/ScottPlayer.png</iconset>
+    <iconset resource="box_design.qrc">
+     <normaloff>:/box_design/box_design.png</normaloff>:/box_design/box_design.png</iconset>
    </property>
    <property name="text">
     <string>About...</string>
@@ -439,7 +170,7 @@
   </action>
   <action name="actionImport_Parts_from_Schematic">
    <property name="icon">
-    <iconset resource="ScottPlayer.qrc">
+    <iconset>
      <normaloff>:/ScottPlayer/icons/report_add.png</normaloff>:/ScottPlayer/icons/report_add.png</iconset>
    </property>
    <property name="text">
@@ -469,7 +200,7 @@
   </action>
   <action name="actionSet_Library_Folder">
    <property name="icon">
-    <iconset resource="ScottPlayer.qrc">
+    <iconset>
      <normaloff>:/ScottPlayer/icons/folder_table.png</normaloff>:/ScottPlayer/icons/folder_table.png</iconset>
    </property>
    <property name="text">
@@ -478,7 +209,7 @@
   </action>
   <action name="actionLibrary_Report">
    <property name="icon">
-    <iconset resource="ScottPlayer.qrc">
+    <iconset>
      <normaloff>:/ScottPlayer/icons/report_go.png</normaloff>:/ScottPlayer/icons/report_go.png</iconset>
    </property>
    <property name="text">
@@ -487,7 +218,7 @@
   </action>
   <action name="actionBOM_CSV">
    <property name="icon">
-    <iconset resource="ScottPlayer.qrc">
+    <iconset>
      <normaloff>:/ScottPlayer/icons/table.png</normaloff>:/ScottPlayer/icons/table.png</iconset>
    </property>
    <property name="text">
@@ -496,7 +227,7 @@
   </action>
   <action name="actionClear">
    <property name="icon">
-    <iconset resource="ScottPlayer.qrc">
+    <iconset>
      <normaloff>:/ScottPlayer/icons/cross.png</normaloff>:/ScottPlayer/icons/cross.png</iconset>
    </property>
    <property name="text">
@@ -531,7 +262,7 @@
   </action>
   <action name="actionStop_Sequence">
    <property name="icon">
-    <iconset resource="ScottPlayer.qrc">
+    <iconset>
      <normaloff>:/ScottPlayer/icons/control_stop_blue.png</normaloff>:/ScottPlayer/icons/control_stop_blue.png</iconset>
    </property>
    <property name="text">
@@ -540,16 +271,43 @@
   </action>
   <action name="actionSave">
    <property name="icon">
-    <iconset resource="ScottPlayer.qrc">
-     <normaloff>:/ScottPlayer/icons/disk.png</normaloff>:/ScottPlayer/icons/disk.png</iconset>
+    <iconset resource="box_design.qrc">
+     <normaloff>:/box_design/icons/disk.png</normaloff>:/box_design/icons/disk.png</iconset>
    </property>
    <property name="text">
     <string>Save</string>
    </property>
   </action>
+  <action name="actionOpen">
+   <property name="icon">
+    <iconset resource="box_design.qrc">
+     <normaloff>:/box_design/icons/folder.png</normaloff>:/box_design/icons/folder.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="actionNew">
+   <property name="icon">
+    <iconset resource="box_design.qrc">
+     <normaloff>:/box_design/icons/page_add.png</normaloff>:/box_design/icons/page_add.png</iconset>
+   </property>
+   <property name="text">
+    <string>New</string>
+   </property>
+  </action>
+  <action name="actionOpen_Settings_File">
+   <property name="icon">
+    <iconset resource="box_design.qrc">
+     <normaloff>:/box_design/icons/pencil.png</normaloff>:/box_design/icons/pencil.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open Settings File...</string>
+   </property>
+  </action>
  </widget>
  <resources>
-  <include location="ScottPlayer.qrc"/>
+  <include location="box_design.qrc"/>
  </resources>
  <connections/>
 </ui>

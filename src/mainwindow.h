@@ -28,57 +28,20 @@ public:
 
 public Q_SLOTS:
 
-    void on_actionSet_Show_Folder_triggered();
+    void on_actionNew_triggered();
+    void on_actionOpen_triggered();
     void on_actionSave_triggered();
-    void on_actionStop_Sequence_triggered();
     void on_actionClose_triggered();
-
-    void on_actionMultisync_triggered();
-
     void on_actionAbout_triggered();
     void on_actionOpen_Logs_triggered();
 
-    void on_pb_addPlaylist_clicked();
-    void on_pb_deletePlaylist_clicked();
-
-    void on_pb_addSequence_clicked();
-    void on_pb_removeSequence_clicked();
-    void on_pb_moveUp_clicked();
-    void on_pb_moveDown_clicked();
-    void on_pb_playSequence_clicked();
-    void on_pb_stopSequence_clicked();
-
-    void on_pb_addSchedule_clicked();
-    void on_pb_editSchedule_clicked();
-    void on_pb_deleteSchedule_clicked();
-    void on_pb_sch_moveUp_clicked();
-    void on_pb_sch_moveDown_clicked();
-
-    void on_tw_playlists_cellDoubleClicked(int row, int column);
-    void on_tw_schedules_cellDoubleClicked(int row, int column);
-    void on_tw_controllers_cellDoubleClicked(int row, int column);
-
-    void on_cb_playlists_currentIndexChanged( int index );
-    
-    void AddController_Received(bool, QString const&, QString const&, QString const&);
-    void RedrawPlaylist(int index);
-
-    void SelectSequence(int index);
-
-    void RedrawSchedule();
-
-    void ClearListData();
     void UpdateStatus(QString const& message);
-    void AddPlaylist(QString const& Playlist, int index);
-    void UpdatePlayback(QString const& sequenceName, int elapsedMS, int durationMS);
+
     void LogMessage(QString const& message , spdlog::level::level_enum llvl = spdlog::level::level_enum::debug);
 
 private:
-    QString FormatTime(int ticksMS) const;
+
     QString GetFileName(QString const& path) const;
-    void RefreshAddPlaylistButtons();
-    void RefreshPlaylistButtons(int count);
-    void RefreshScheduleButtons();
 
     Ui::MainWindow *m_ui;
     std::shared_ptr<spdlog::logger> m_logger{ nullptr };
