@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=box_design
+GenericName=box_design
+Comment=box design is a enclosure design software.
+Exec=box_design
+Terminal=false
+Icon=org.flatpak.box_design
+Type=Application
+Categories=Qt;KDE;AudioVideo

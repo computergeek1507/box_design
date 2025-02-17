@@ -1,0 +1,66 @@
+name: CMake Mac
+
+on:
+  push:
+    branches: [ "main" ]
+    paths-ignore:
+      - '.github/workflows/*.yml'
+      - '*.md'
+  pull_request:
+    branches: [ "main" ]
+    paths-ignore:
+      - '.github/workflows/*.yml'
+      - '*.md'
+  workflow_dispatch:
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    runs-on: macos-latest   
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install create-dmg
+      run: brew install create-dmg
+    
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v3
+      with:
+        aqtversion: '==3.1.*'
+        version: '5.15.2'
+        host: 'mac'
+        target: 'desktop'
+        setup-python: false
+        install-deps: true
+        arch: 'clang_64'
+
+    - name: Configure CMake
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_MACOSX_BUNDLE=ON
+
+    - name: Build
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+      
+    - name: macdeployqt
+      run: macdeployqt ${{ github.workspace }}/build/box_design.app -dmg -verbose=3
+      
+    - name: Build DMG
+      run: create-dmg box_design.dmg ./build/box_design.app
+
+    - name: Upload Installer
+      uses: actions/upload-artifact@v3
+      with:
+        name: box_design
+        path: '**.dmg'
+
+    - name: Create prerelease
+      if: github.ref == 'refs/heads/main'
+      uses: marvinpinto/action-automatic-releases@latest
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        prerelease: true
+        automatic_release_tag: "ci_mac"
+        title: "${{ steps.version.outputs.version }}"
+        files: |        
+          box_design.dmg

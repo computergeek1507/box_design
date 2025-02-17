@@ -1,0 +1,25 @@
+app-id: org.flatpak.box_design
+runtime: org.kde.Platform
+runtime-version: "5.15-23.08"
+sdk: org.kde.Sdk
+command: box_design
+finish-args:
+  - --share=ipc
+  - --device=dri
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --share=network
+  - --filesystem=xdg-documents
+  - --env=PATH=/app/bin:/usr/bin
+modules:
+  - name: box_design
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+    build-options:
+      build-args:
+        - --share=network
+    sources:
+      - type: dir
+        path: .

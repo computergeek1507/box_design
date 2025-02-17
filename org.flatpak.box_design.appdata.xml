@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>org.flatpak.box_design.desktop</id>
+  <name>box_design</name>
+  <summary>Box Designs</summary>
+  <developer_name>computergeek1507</developer_name>
+  <description>
+  <p>
+    box design is a enclosure design software.
+  </p>
+  </description>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <url type="homepage">https://github.com/computergeek1507/box_design</url>
+</component>
