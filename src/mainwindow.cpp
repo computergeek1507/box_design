@@ -4,27 +4,24 @@
 
 #include "config.h"
 
-#include <QMessageBox>
-#include <QDesktopServices>
-#include <QSettings>
-#include <QFileDialog>
-#include <QTextStream>
-#include <QListWidget>
-#include <QListWidgetItem>
-#include <QTableWidget>
-#include <QThread>
-#include <QInputDialog>
-#include <QCommandLineParser>
-#include <QTimer>
-#include <QNetworkAccessManager>
-#include <QNetworkReply>
-#include <QStandardPaths>
-#include <QOperatingSystemVersion>
+#include "data/enclosure.h"
 
 #include "spdlog/spdlog.h"
 
 #include "spdlog/sinks/qt_sinks.h"
 #include "spdlog/sinks/rotating_file_sink.h"
+
+#include <QMessageBox>
+#include <QDesktopServices>
+#include <QSettings>
+#include <QFileDialog>
+#include <QTextStream>
+#include <QThread>
+#include <QTimer>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QStandardPaths>
+#include <QOperatingSystemVersion>
 
 #include <filesystem>
 #include <utility>
@@ -50,7 +47,7 @@ MainWindow::MainWindow(QWidget* parent)
 		auto file{ std::string(logdir.toStdString() + log_name) };
 		auto rotating = std::make_shared<spdlog::sinks::rotating_file_sink_mt>(file, 1024 * 1024, 5, false);
 
-		m_logger = std::make_shared<spdlog::logger>("scottplayer", rotating);
+		m_logger = std::make_shared<spdlog::logger>("box_design", rotating);
 		m_logger->flush_on(spdlog::level::debug);
 		m_logger->set_level(spdlog::level::debug);
 		m_logger->set_pattern("[%D %H:%M:%S] [%L] %v");
@@ -64,10 +61,10 @@ MainWindow::MainWindow(QWidget* parent)
 	setWindowTitle(windowTitle() + " v" + PROJECT_VER);
 
 	m_settings = std::make_unique< QSettings>(m_appdir + "/settings.ini", QSettings::IniFormat);
-
-
 	auto lastfolder{ m_settings->value("last_folder").toString() };
 
+	m_ui->splitter->setStretchFactor(0, 1);
+	m_ui->splitter->setStretchFactor(1, 5);
 }
 
 MainWindow::~MainWindow()
@@ -126,5 +123,3 @@ QString MainWindow::GetFileName(QString const& path) const
 	if(path.isEmpty()) return QString();
 	return QFileInfo( path ).fileName();
 }
-
-

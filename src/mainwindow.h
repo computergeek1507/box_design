@@ -1,11 +1,12 @@
 #pragma once
 
-
 #include "spdlog/spdlog.h"
 #include "spdlog/common.h"
 
 #include <QMainWindow>
 #include <QSettings>
+#include <QGraphicsRectItem>
+#include <QGraphicsView>
 
 #include <memory>
 #include <filesystem>
@@ -17,6 +18,8 @@ class QListWidgetItem;
 class QListWidget;
 class QTableWidget;
 QT_END_NAMESPACE
+
+struct Enclosure;
 
 class MainWindow : public QMainWindow
 {
@@ -48,5 +51,9 @@ private:
     std::unique_ptr<QSettings> m_settings{ nullptr };
     QString m_appdir;
     QString m_showfolder;
+
+    std::vector< QGraphicsItem* > m_boxItems;
+
+    std::unique_ptr <Enclosure> m_enclosure;
 };
 

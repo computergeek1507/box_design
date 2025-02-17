@@ -34,9 +34,30 @@
        <number>10</number>
       </property>
       <widget class="QTreeWidget" name="treeWidget">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="baseSize">
+        <size>
+         <width>100</width>
+         <height>0</height>
+        </size>
+       </property>
+       <attribute name="headerDefaultSectionSize">
+        <number>50</number>
+       </attribute>
        <column>
         <property name="text">
-         <string notr="true">1</string>
+         <string notr="true">Items</string>
         </property>
        </column>
       </widget>
@@ -49,13 +70,20 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>58</width>
+          <width>526</width>
           <height>769</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
-          <widget class="QWidget" name="widget" native="true"/>
+          <widget class="BoxGraphicsView" name="boxView">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>1</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -126,39 +154,6 @@
     <string>Open Logs...</string>
    </property>
   </action>
-  <action name="actionSet_Show_Folder">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/ScottPlayer/icons/folder.png</normaloff>:/ScottPlayer/icons/folder.png</iconset>
-   </property>
-   <property name="text">
-    <string>Set Show Folder...</string>
-   </property>
-  </action>
-  <action name="actionOpen_Explorer">
-   <property name="text">
-    <string>Open Explorer</string>
-   </property>
-  </action>
-  <action name="actionImport_PartList">
-   <property name="text">
-    <string>PartList CSV...</string>
-   </property>
-  </action>
-  <action name="actionImport_Rename_Map">
-   <property name="text">
-    <string>Rename CSV...</string>
-   </property>
-  </action>
-  <action name="actionReload_Project">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/ScottPlayer/icons/arrow_refresh_small.png</normaloff>:/ScottPlayer/icons/arrow_refresh_small.png</iconset>
-   </property>
-   <property name="text">
-    <string>Reload Project</string>
-   </property>
-  </action>
   <action name="actionAbout">
    <property name="icon">
     <iconset resource="box_design.qrc">
@@ -166,107 +161,6 @@
    </property>
    <property name="text">
     <string>About...</string>
-   </property>
-  </action>
-  <action name="actionImport_Parts_from_Schematic">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/ScottPlayer/icons/report_add.png</normaloff>:/ScottPlayer/icons/report_add.png</iconset>
-   </property>
-   <property name="text">
-    <string>PartList from Schematic...</string>
-   </property>
-  </action>
-  <action name="actionExport_PartList_CSV">
-   <property name="text">
-    <string>PartList CSV...</string>
-   </property>
-  </action>
-  <action name="actionExport_Rename_CSV">
-   <property name="text">
-    <string>Rename CSV...</string>
-   </property>
-  </action>
-  <action name="actionOverride">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Override Existing Parts</string>
-   </property>
-  </action>
-  <action name="actionSet_Library_Folder">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/ScottPlayer/icons/folder_table.png</normaloff>:/ScottPlayer/icons/folder_table.png</iconset>
-   </property>
-   <property name="text">
-    <string>Set Library Folder</string>
-   </property>
-  </action>
-  <action name="actionLibrary_Report">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/ScottPlayer/icons/report_go.png</normaloff>:/ScottPlayer/icons/report_go.png</iconset>
-   </property>
-   <property name="text">
-    <string>Library Report...</string>
-   </property>
-  </action>
-  <action name="actionBOM_CSV">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/ScottPlayer/icons/table.png</normaloff>:/ScottPlayer/icons/table.png</iconset>
-   </property>
-   <property name="text">
-    <string>BOM CSV...</string>
-   </property>
-  </action>
-  <action name="actionClear">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/ScottPlayer/icons/cross.png</normaloff>:/ScottPlayer/icons/cross.png</iconset>
-   </property>
-   <property name="text">
-    <string>Clear</string>
-   </property>
-  </action>
-  <action name="actionDownload_EEPROM">
-   <property name="text">
-    <string>Download EEPROM...</string>
-   </property>
-  </action>
-  <action name="actionPlay_Sequence">
-   <property name="text">
-    <string>Play Sequence</string>
-   </property>
-  </action>
-  <action name="actionMultisync">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Multisync</string>
-   </property>
-  </action>
-  <action name="actionRDS">
-   <property name="text">
-    <string>Audio</string>
-   </property>
-  </action>
-  <action name="actionStop_Sequence">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/ScottPlayer/icons/control_stop_blue.png</normaloff>:/ScottPlayer/icons/control_stop_blue.png</iconset>
-   </property>
-   <property name="text">
-    <string>Stop Sequence</string>
    </property>
   </action>
   <action name="actionSave">
@@ -306,6 +200,13 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>BoxGraphicsView</class>
+   <extends>QGraphicsView</extends>
+   <header>boxgraphicsview.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="box_design.qrc"/>
  </resources>
