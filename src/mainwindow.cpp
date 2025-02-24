@@ -6,6 +6,8 @@
 
 #include "data/enclosure.h"
 
+#include "BoxGraphicsScene.h"
+
 #include "spdlog/spdlog.h"
 
 #include "spdlog/sinks/qt_sinks.h"
@@ -25,6 +27,8 @@
 
 #include <filesystem>
 #include <utility>
+#include <fstream>
+#include <sstream>
 
 
 MainWindow::MainWindow(QWidget* parent)
@@ -63,8 +67,23 @@ MainWindow::MainWindow(QWidget* parent)
 	m_settings = std::make_unique< QSettings>(m_appdir + "/settings.ini", QSettings::IniFormat);
 	auto lastfolder{ m_settings->value("last_folder").toString() };
 
+	m_boxScene = new BoxGraphicsScene(this);
+
+	//ui.graphicsView->setScene(&pageScene);
+	m_ui->boxView->setScene(m_boxScene);// = new QGraphicsView(imageScene);
+
 	m_ui->splitter->setStretchFactor(0, 1);
 	m_ui->splitter->setStretchFactor(1, 5);
+
+	m_templatedir = m_appdir + "/templates/";
+	std::filesystem::create_directory(m_templatedir.toStdString());
+
+	m_devicesdir = m_appdir + "/devices/";
+	std::filesystem::create_directory(m_devicesdir.toStdString());
+
+	m_devicesItem = new QTreeWidgetItem(QStringList() << "Devices");
+	m_ui->treeWidget->insertTopLevelItem(0, m_devicesItem);
+	LoadDevices();
 }
 
 MainWindow::~MainWindow()
@@ -74,8 +93,40 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionNew_triggered()
 {
+	QString openFileName =
+		QFileDialog::getOpenFileName(this, "Open Template File", m_templatedir,
+			"Box Design Template (*.jtp)");
 
-
+	if (!openFileName.isEmpty())
+	{
+		try
+		{
+			nlohmann::json jsonData;
+			std::ifstream inputFile(openFileName.toStdString());
+			inputFile >> jsonData;
+			m_enclosure = std::make_unique<Enclosure>(jsonData);
+			m_boxScene->clear();
+			//m_enclosure->Draw(m_boxScene);
+			for (auto const& h : m_enclosure->holes)
+			{
+				drawPoint(*m_boxScene, h.x, h.y, h.diameter, QPen(Qt::black));
+			}
+			for (auto const& d : m_enclosure->devices)
+			{
+				drawPoint(*m_boxScene, d.x, d.y, 1, QPen(Qt::black));
+			}
+			for (auto const& l : m_enclosure->outline.lines)
+			{
+				drawLine(*m_boxScene, l.x1, l.y1, l.x2, l.y2, QPen(Qt::black));
+			}
+			UpdateStatus("Template Loaded: " + GetFileName(openFileName));
+		}
+		catch (std::exception& ex)
+		{
+			UpdateStatus("Error Loading Template: " + GetFileName(openFileName));
+			m_logger->debug(ex.what());
+		}
+	}
 }
 
 void MainWindow::on_actionOpen_triggered() 
@@ -122,4 +173,40 @@ QString MainWindow::GetFileName(QString const& path) const
 {
 	if(path.isEmpty()) return QString();
 	return QFileInfo( path ).fileName();
+}
+
+void MainWindow::LoadDevices()
+{
+	for (auto* i : m_devicesItem->takeChildren())
+	{
+		delete i;
+	}
+	QDir dir(m_devicesdir);
+	QFileInfoList devEntries = dir.entryInfoList(QDir::Files | QDir::NoDotAndDotDot | QDir::NoSymLinks);
+	for (auto const& dev : devEntries)
+	{
+		auto const& name = dev.baseName();
+		//m_ui->treeWidget->addItem(new QListWidgetItem(name));
+
+		auto* newItem = new QTreeWidgetItem();
+		newItem->setText(0, name);
+		//newItem->setText(1, value);
+		m_devicesItem->insertChild(0, newItem);
+	}
+}
+
+void MainWindow::drawPoint(QGraphicsScene& scene, double x, double y, int radius , QPen pen)
+{
+	const QBrush blackbrush(Qt::black, Qt::SolidPattern);
+
+	// y is negative due to graphics drawn from top left
+	scene.addEllipse(x, -y - radius, radius, radius, pen, blackbrush);
+}
+
+void MainWindow::drawLine(QGraphicsScene& scene, double x1, double y1, double x2, double y2, QPen pen)
+{
+	// y is negative due to graphics drawn from top left
+
+	scene.addLine(x1, -y1, x2, -y2, pen);
+	
 }

@@ -7,6 +7,7 @@
 #include <QSettings>
 #include <QGraphicsRectItem>
 #include <QGraphicsView>
+#include <QTreeWidgetItem>
 
 #include <memory>
 #include <filesystem>
@@ -20,6 +21,7 @@ class QTableWidget;
 QT_END_NAMESPACE
 
 struct Enclosure;
+struct BoxGraphicsScene;
 
 class MainWindow : public QMainWindow
 {
@@ -45,14 +47,22 @@ public Q_SLOTS:
 private:
 
     QString GetFileName(QString const& path) const;
+    void drawPoint(QGraphicsScene& scene, double x, double y, int, QPen pen);
+    void drawLine(QGraphicsScene& scene, double x1, double y1, double x2, double y2, QPen pen);
+    void LoadDevices();
 
     Ui::MainWindow *m_ui;
     std::shared_ptr<spdlog::logger> m_logger{ nullptr };
     std::unique_ptr<QSettings> m_settings{ nullptr };
     QString m_appdir;
-    QString m_showfolder;
+    QString m_templatedir;
+    QString m_devicesdir;
 
-    std::vector< QGraphicsItem* > m_boxItems;
+    QTreeWidgetItem* m_devicesItem{ nullptr };
+
+    BoxGraphicsScene* m_boxScene;
+
+    std::vector< std::unique_ptr<QGraphicsItem> > m_boxItems;
 
     std::unique_ptr <Enclosure> m_enclosure;
 };

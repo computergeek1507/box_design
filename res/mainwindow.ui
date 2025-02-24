@@ -52,6 +52,9 @@
          <height>0</height>
         </size>
        </property>
+       <property name="dragEnabled">
+        <bool>true</bool>
+       </property>
        <attribute name="headerDefaultSectionSize">
         <number>50</number>
        </attribute>

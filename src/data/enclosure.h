@@ -22,12 +22,27 @@ struct Enclosure
 		y = json["y"];
 		width = json["width"];
 		height = json["height"];
-		auto devicesJson = json["devices"];
-		for (auto const& deviceJson : devicesJson)
+
+		if (json.contains("devices")) 
 		{
-			devices.push_back(Device(deviceJson));
+			auto devicesJson = json["devices"];
+			for (auto const& deviceJson : devicesJson)
+			{
+				devices.push_back(Device(deviceJson));
+			}
 		}
-		outline = Outline(json["outline"]);
+		if (json.contains("holes"))
+		{
+			auto holesJson = json["holes"];
+			for (auto const& holeJson : holesJson)
+			{
+				holes.push_back(Hole(holeJson));
+			}
+		}
+		if (json.contains("outline"))
+		{
+			outline = Outline(json["outline"]);
+		}
 	}
 	int x;
 	int y;

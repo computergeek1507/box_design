@@ -1,6 +1,4 @@
-#pragma once
 
-#include <QGraphicsRectItem>
 
 #include <nlohmann/json.hpp>
 
@@ -19,30 +17,8 @@ struct Hole
 		y = json["y"];
 		diameter = json["diameter"];
 	}
-	int x;
-	int y;
-	int diameter;
+	int x{ 0 };
+	int y{ 0 };
+	int diameter{ 0 };
 };
 
-struct HoleQGraphics : public QGraphicsRectItem
-{
-	HoleQGraphics(Hole* hole, QGraphicsItem* parent = nullptr)
-		: QGraphicsRectItem(parent), m_hole(hole)
-	{
-		setRect(0, 0, 10, 10);
-		//setBrush(Qt::black);
-		setFlag(QGraphicsItem::ItemIsMovable);
-		setFlag(QGraphicsItem::ItemIsSelectable);
-	}
-
-protected:
-	void mousePressEvent(QGraphicsSceneMouseEvent* event) override
-	{
-		//if (event->button() == Qt::RightButton)
-		//{
-		//	delete this;
-		//}
-	}
-private:
-	Hole* m_hole;
-};

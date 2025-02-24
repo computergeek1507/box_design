@@ -25,9 +25,9 @@ struct Line
 		x2 = json["x2"];
 		y2 = json["y2"];
 	}
-	int x1;
-	int y1;
-	int x2;
-	int y2;
+	int x1{ 0 };
+	int y1{ 0 };
+	int x2{ 0 };
+	int y2{ 0 };
 };
 
