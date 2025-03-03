@@ -5,6 +5,7 @@
 
 #include <nlohmann/json.hpp>
 
+#include <string>
 #include <vector>
 
 struct Device
@@ -23,6 +24,7 @@ struct Device
 		y = json["y"];
 		width = json["width"];
 		height = json["height"];
+		image = json["image"];
 		auto holesJson = json["holes"];
 		for (auto const& holeJson : holesJson)
 		{
@@ -34,6 +36,8 @@ struct Device
 	int y{ 0 };
 	int width{ 0 };
 	int height{ 0 };
+
+	std::string image;
 
 	std::vector<Hole> holes;
 	Outline outline;

@@ -6,6 +6,8 @@
 
 #include "data/enclosure.h"
 
+#include "data/device_graphics_item.h"
+
 #include "BoxGraphicsScene.h"
 
 #include "spdlog/spdlog.h"
@@ -68,6 +70,7 @@ MainWindow::MainWindow(QWidget* parent)
 	auto lastfolder{ m_settings->value("last_folder").toString() };
 
 	m_boxScene = new BoxGraphicsScene(this);
+	connect(m_boxScene, &BoxGraphicsScene::AddDevice, this, &MainWindow::OnAddDevice, Qt::QueuedConnection);
 
 	//ui.graphicsView->setScene(&pageScene);
 	m_ui->boxView->setScene(m_boxScene);// = new QGraphicsView(imageScene);
@@ -81,8 +84,8 @@ MainWindow::MainWindow(QWidget* parent)
 	m_devicesdir = m_appdir + "/devices/";
 	std::filesystem::create_directory(m_devicesdir.toStdString());
 
-	m_devicesItem = new QTreeWidgetItem(QStringList() << "Devices");
-	m_ui->treeWidget->insertTopLevelItem(0, m_devicesItem);
+	//m_devicesItem = new QTreeWidgetItem(QStringList() << "Devices");
+	//m_ui->listWidget->addItem(0, m_devicesItem);
 	LoadDevices();
 }
 
@@ -177,10 +180,7 @@ QString MainWindow::GetFileName(QString const& path) const
 
 void MainWindow::LoadDevices()
 {
-	for (auto* i : m_devicesItem->takeChildren())
-	{
-		delete i;
-	}
+	
 	QDir dir(m_devicesdir);
 	QFileInfoList devEntries = dir.entryInfoList(QDir::Files | QDir::NoDotAndDotDot | QDir::NoSymLinks);
 	for (auto const& dev : devEntries)
@@ -188,11 +188,21 @@ void MainWindow::LoadDevices()
 		auto const& name = dev.baseName();
 		//m_ui->treeWidget->addItem(new QListWidgetItem(name));
 
-		auto* newItem = new QTreeWidgetItem();
-		newItem->setText(0, name);
+		auto* newItem = new QListWidgetItem();
+		newItem->setText(name);
+		newItem->setData(Qt::UserRole, dev.filePath());
 		//newItem->setText(1, value);
-		m_devicesItem->insertChild(0, newItem);
+		//m_devicesItem->insertChild(0, newItem);
+
+		//QString itemType = listWidgetItem->data(Qt::UserRole).toString();
+		m_ui->listWidget->addItem(newItem);
+		//m_ui->listWidget->addItem(name);
 	}
+}
+
+void MainWindow::OnAddDevice(QString path, QPointF scenePos) 
+{
+	//m_boxScene->addItem()
 }
 
 void MainWindow::drawPoint(QGraphicsScene& scene, double x, double y, int radius , QPen pen)

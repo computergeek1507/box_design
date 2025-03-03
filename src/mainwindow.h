@@ -22,6 +22,7 @@ QT_END_NAMESPACE
 
 struct Enclosure;
 struct BoxGraphicsScene;
+struct DeviceGraphicsItem;
 
 class MainWindow : public QMainWindow
 {
@@ -39,6 +40,8 @@ public Q_SLOTS:
     void on_actionClose_triggered();
     void on_actionAbout_triggered();
     void on_actionOpen_Logs_triggered();
+
+    void OnAddDevice(QString path, QPointF scenePos);
 
     void UpdateStatus(QString const& message);
 
@@ -58,11 +61,11 @@ private:
     QString m_templatedir;
     QString m_devicesdir;
 
-    QTreeWidgetItem* m_devicesItem{ nullptr };
+    //QTreeWidgetItem* m_devicesItem{ nullptr };
 
     BoxGraphicsScene* m_boxScene;
 
-    std::vector< std::unique_ptr<QGraphicsItem> > m_boxItems;
+    std::vector< std::unique_ptr<DeviceGraphicsItem> > m_boxItems;
 
     std::unique_ptr <Enclosure> m_enclosure;
 };
